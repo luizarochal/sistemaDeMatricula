@@ -1,4 +1,4 @@
-# Nome do projeto
+# Sistema de matrícula
 Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.
 
 ## Integrantes
