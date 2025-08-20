@@ -1,6 +1,4 @@
-package sistema-de-matricula.implementação.code;
-
-import sistema_de_matricula.implementacao.code.Usuario;
+package sistemaDeMatricula.implementacao.code;
 
 public class Professor extends Usuario {
 

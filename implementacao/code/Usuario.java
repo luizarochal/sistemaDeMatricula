@@ -1,4 +1,4 @@
-package sistema-de-matricula.implementação.code;
+package sistemaDeMatricula.implementacao.code;
 
 public class Usuario {
     private String nome;

@@ -1,14 +1,16 @@
-package sistema-de-matricula.implementação.code;
+package sistemaDeMatricula.implementacao.code;
 
 import java.util.List;
 
-public class Aluno {
+public class Aluno extends Usuario {
 
     private Matricula matricula;
     private List<Disciplina> disciplinas;
     private Curso curso;
 
-    public Aluno(Matricula matricula, List<Disciplina> disciplinas, Curso curso) {
+    public Aluno(String nome, String email, String senha, Matricula matricula, List<Disciplina> disciplinas,
+            Curso curso) {
+        super(nome, email, senha);
         this.matricula = matricula;
         this.disciplinas = disciplinas;
         this.curso = curso;

@@ -1,4 +1,6 @@
-package sistema-de-matricula.implementação.code;
+package sistemaDeMatricula.implementacao.code;
+
+import java.util.List;
 
 public class Disciplina {
 
