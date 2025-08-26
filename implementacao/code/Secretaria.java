@@ -6,15 +6,6 @@ public class Secretaria extends Usuario {
 
     public Secretaria(String nome, String email, String senha, Curriculo curriculo) {
         super(nome, email, senha);
-        this.curriculo = curriculo;
-    }
-
-    public Curriculo getCurriculo() {
-        return curriculo;
-    }
-
-    public void setCurriculo(Curriculo curriculo) {
-        this.curriculo = curriculo;
     }
 
     public void cadastrarInfoAluno() {
@@ -27,6 +18,10 @@ public class Secretaria extends Usuario {
 
     public void cadastrarInfoDisciplina() {
         // Lógica para cadastrar as informações da disciplina
+    }
+
+    public void gerenciarCurriculo(Curriculo curriculo){
+
     }
 
 }
