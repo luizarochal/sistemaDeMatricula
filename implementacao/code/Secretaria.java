@@ -2,10 +2,13 @@ package sistemaDeMatricula.implementacao.code;
 
 public class Secretaria extends Usuario {
 
-    private Curriculo curriculo;
-
-    public Secretaria(String nome, String email, String senha, Curriculo curriculo) {
+    public Secretaria(String nome, String email, String senha) {
         super(nome, email, senha);
+    }
+
+    @Override
+    public int getTipo() {
+        return 1;
     }
 
     public void cadastrarInfoAluno() {

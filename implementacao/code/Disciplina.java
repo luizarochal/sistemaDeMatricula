@@ -59,4 +59,20 @@ public class Disciplina {
         this.eObrigatorio = eObrigatorio;
     }
 
+    public String visualizarAlunos() {
+        StringBuilder sb = new StringBuilder();
+        for (Aluno aluno : alunos) {
+            sb.append(aluno.getNome()).append(" - ").append(aluno.getEmail()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    public boolean verificarCapacidade() {
+        return alunos.size() < CAPACIDADE;
+    }
+
+    public boolean estaAtiva() {
+        return alunos.size() >= 3;
+    }
+
 }

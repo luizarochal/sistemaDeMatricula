@@ -16,6 +16,11 @@ public class Aluno extends Usuario {
         this.curso = curso;
     }
 
+    @Override
+    public int getTipo() {
+        return 3;
+    }
+
     public Matricula getMatricula() {
         return matricula;
     }
@@ -40,7 +45,7 @@ public class Aluno extends Usuario {
         this.curso = curso;
     }
 
-    public void matricularDisciplina() {
+    public void matricularDisciplina(Disciplina disciplina) {
         // Lógica para matricular o aluno em uma disciplina
     }
 
@@ -55,5 +60,4 @@ public class Aluno extends Usuario {
     public void atualizarDisciplina() {
         // Lógica para atualizar as informações do aluno
     }
-
 }

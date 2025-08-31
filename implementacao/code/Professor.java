@@ -9,6 +9,11 @@ public class Professor extends Usuario {
         this.disciplina = disciplina;
     }
 
+    @Override
+    public int getTipo() {
+        return 2;
+    }
+
     public Disciplina getDisciplina() {
         return disciplina;
     }
