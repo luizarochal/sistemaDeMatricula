@@ -1,5 +1,6 @@
 package sistemaDeMatricula.implementacao.code;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Curso {
@@ -37,4 +38,13 @@ public class Curso {
         this.nome = nome;
     }
 
+    public static Curso procurarCurso(String nomeCurso) {
+        try {
+            CursoRepositorio repo = new CursoRepositorio("curso.txt");
+            return repo.procurarCurso(nomeCurso);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -3,61 +3,55 @@ package sistemaDeMatricula.implementacao.code;
 import java.util.List;
 
 public class Aluno extends Usuario {
-
     private Matricula matricula;
-    private List<Disciplina> disciplinas;
     private Curso curso;
 
-    public Aluno(String nome, String email, String senha, Matricula matricula, List<Disciplina> disciplinas,
-            Curso curso) {
+    public Aluno(String nome, String email, String senha, Matricula matricula, Curso curso) {
         super(nome, email, senha);
-        this.matricula = matricula;
-        this.disciplinas = disciplinas;
+        this.matricula = matricula != null ? matricula : new Matricula();
         this.curso = curso;
     }
 
     @Override
-    public int getTipo() {
-        return 3;
-    }
+    public int getTipo() { return 3; }
 
-    public Matricula getMatricula() {
-        return matricula;
-    }
+    public Matricula getMatricula() { return matricula; }
+    public void setMatricula(Matricula matricula) { this.matricula = matricula; }
 
-    public void setMatricula(Matricula matricula) {
-        this.matricula = matricula;
-    }
-
-    public List<Disciplina> getDisciplinas() {
-        return disciplinas;
-    }
-
-    public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
-    }
-
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
-    }
+    public Curso getCurso() { return curso; }
+    public void setCurso(Curso curso) { this.curso = curso; }
 
     public void matricularDisciplina(Disciplina disciplina) {
-        // Lógica para matricular o aluno em uma disciplina
+        if (disciplina == null) {
+            throw new IllegalArgumentException("Disciplina não pode ser nula");
+        }
+        
+        if (matricula.getDisciplinasObrigatorias().size() >= 4 && disciplina.iseObrigatorio()) {
+            throw new IllegalStateException("Limite de 4 disciplinas obrigatórias atingido");
+        }
+        
+        if (matricula.getDisciplinasOptativas().size() >= 2 && !disciplina.iseObrigatorio()) {
+            throw new IllegalStateException("Limite de 2 disciplinas optativas atingido");
+        }
+
+        if(disciplina.iseObrigatorio()) {
+            matricula.cadastrarDisciplinaObrigatoria(disciplina, this);
+        } else {
+            matricula.cadastrarDisciplinaOptativa(disciplina, this);
+        }
     }
 
     public void cancelarDisciplina(Disciplina disciplina) {
-        // Lógica para cancelar a matrícula em uma disciplina
+        matricula.cancelarDisciplina(disciplina, this);
     }
 
-    public void visualizarDisciplina() {
-        // Lógica para visualizar as disciplinas do aluno
-    }
-
-    public void atualizarDisciplina() {
-        // Lógica para atualizar as informações do aluno
+    public void visualizarDisciplinas() {
+        System.out.println("Disciplinas matriculadas:");
+        for (Disciplina disciplina : matricula.getDisciplinasObrigatorias()) {
+            System.out.println("- " + disciplina.getNome() + " (Obrigatória)");
+        }
+        for (Disciplina disciplina : matricula.getDisciplinasOptativas()) {
+            System.out.println("- " + disciplina.getNome() + " (Optativa)");
+        }
     }
 }

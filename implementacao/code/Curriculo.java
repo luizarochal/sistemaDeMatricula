@@ -2,6 +2,7 @@ package sistemaDeMatricula.implementacao.code;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Scanner;
 
 public class Curriculo {
     private String nome;
@@ -9,6 +10,7 @@ public class Curriculo {
     private List<Curso> cursos;
     private int semestre;
 
+   
     public Curriculo(String nome, LocalDate ano, List<Curso> cursos, int semestre) {
         this.nome = nome;
         this.ano = ano;
@@ -48,8 +50,5 @@ public class Curriculo {
         this.semestre = semestre;
     }
 
-    public void cadastrarCurriculo() {
-        // Lógica para cadastrar o currículo
-    }
-
+    /*Curriculo curriculo = new Curriculo("Engenharia de Software", LocalDate.of(2024, 1, 1), cursos, 8);*/
 }

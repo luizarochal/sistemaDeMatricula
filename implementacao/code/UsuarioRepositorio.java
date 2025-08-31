@@ -1,10 +1,9 @@
+package sistemaDeMatricula.implementacao.code;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
-
-import sistemaDeMatricula.implementacao.code.Usuario;
 
 public class UsuarioRepositorio {
 
@@ -41,6 +40,21 @@ public class UsuarioRepositorio {
 
     public void adicionar(Usuario usuario) throws IOException {
         List<Usuario> usuarios = carregar();
+
+        try {
+            Aluno aluno = (Aluno) usuario;
+            if (aluno.getCurso() != null) {
+                CursoRepositorio cursoRepo = new CursoRepositorio("curso.txt");
+                List<Curso> cursos = cursoRepo.carregar();
+                if (!cursos.contains(aluno.getCurso())) {
+                    cursos.add(aluno.getCurso());
+                    cursoRepo.salvar(cursos);
+                }
+            }
+        } catch (ClassCastException e) {
+
+        }
+
         usuarios.add(usuario);
         salvar(usuarios);
     }
@@ -75,4 +89,21 @@ public class UsuarioRepositorio {
         }
         return false;
     }
+
+    public static Aluno procurarAlunoPorEmail(String emailAluno) {
+        try {
+            UsuarioRepositorio usuarioRepo = new UsuarioRepositorio("usuarios.txt");
+            List<Usuario> usuarios = usuarioRepo.carregar();
+
+            for (Usuario u : usuarios) {
+                if (u instanceof Aluno && u.getEmail().equalsIgnoreCase(emailAluno)) {
+                    return (Aluno) u;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
