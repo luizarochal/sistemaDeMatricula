@@ -54,4 +54,6 @@ public class Aluno extends Usuario {
             System.out.println("- " + disciplina.getNome() + " (Optativa)");
         }
     }
+
+
 }

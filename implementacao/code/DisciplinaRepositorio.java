@@ -30,6 +30,9 @@ public class DisciplinaRepositorio {
                 disciplinas.add(Disciplina.criarDoTexto(linha));
             }
         }
+
+        //System.out.println("Disciplinas carregadas: " + disciplinas.size());
+        //Respondeu 2
         return disciplinas;
     }
 
@@ -43,10 +46,11 @@ public class DisciplinaRepositorio {
 
     public Disciplina procurarMateria(String nomeDisciplina) throws IOException {
         for (Disciplina d : carregar()) {
-            if (d.getNome().equalsIgnoreCase(nomeDisciplina)) {
+            if (d.getNome().trim().equalsIgnoreCase(nomeDisciplina.trim())) {
                 return d;
             }
         }
+        System.out.println("Disciplina não encontrada: " + nomeDisciplina);
         return null;
     }
 

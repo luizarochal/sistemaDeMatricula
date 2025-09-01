@@ -107,7 +107,7 @@ public class Disciplina {
         if (dados.length < 5) {
             throw new IllegalArgumentException("Linha inválida: " + linha);
         }
-
+    // Engenharia de Software;Programação Orientada a Objetos;1;professor@escola.com;1
         String nomeDisciplina = dados[0];
         String nomeCurso = dados[1];
         boolean ativa = Boolean.parseBoolean(dados[2]);
@@ -120,7 +120,7 @@ public class Disciplina {
 
         // Buscar professor (criar apenas com email para evitar dependência circular)
         Professor professor = null;
-        if (!"SEM_PROFESSOR".equals(emailProfessor)) {
+        if (!"SEM_PROFESSOR".equals(emailProfessor)&& emailProfessor.contains("@")) {
             professor = new Professor("", emailProfessor, "12345", null);
         }
 
