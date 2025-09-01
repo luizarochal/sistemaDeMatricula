@@ -1,3 +1,4 @@
 aluna@escola.com;O:Programação Orientada a Objetos,O:Cálculo I
 aluno2@escola.com;P:Programacao Orientada a Objetos
-aluno@escola.com;P:Calculo I
+
+aluno@escola.com;P:Programacao Orientada a Objetos

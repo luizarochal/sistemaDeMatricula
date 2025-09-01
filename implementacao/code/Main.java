@@ -171,8 +171,6 @@ public class Main {
             switch (opcao) {
                 case 1 -> {
                     for (Disciplina d : disciplinaRepo.carregar()) {
-                        MatriculaRepositorio matriculaRepo = new MatriculaRepositorio("matriculas.txt");
-                        matriculaRepo.salvarMatricula(aluno);
                         System.out.println("- " + d.getNome() + " (" + d.getCurso().getNome() + ")");
                     }
                 }
@@ -195,6 +193,9 @@ public class Main {
                     if (disciplina != null) {
                         aluno.cancelarDisciplina(disciplina);
                         System.out.println("Cancelamento realizado!");
+                        MatriculaRepositorio matriculaRepo = new MatriculaRepositorio("matriculas.txt");
+                        matriculaRepo.removerMatricula(aluno);
+                        matriculaRepo.salvarMatricula(aluno);
                     }
                 }
                 case 4 -> aluno.visualizarDisciplinas();
