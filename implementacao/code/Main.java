@@ -144,7 +144,7 @@ public class Main {
                         cursoRepo.salvar(cursos);
                     }
 
-                    Matricula matricula = new Matricula();
+                    Matricula matricula = new Matricula(emailAluno);
                     matricula.definirPeriodoMatricula(LocalDate.now().plusDays(7));
 
                     Aluno aluno = new Aluno(nomeAluno, emailAluno, senhaAluno, matricula, cursoAluno);
@@ -158,6 +158,8 @@ public class Main {
     }
 
     private static void menuAluno(Scanner sc, Aluno aluno, DisciplinaRepositorio disciplinaRepo) throws IOException {
+        Matricula matricula = new Matricula(aluno.getEmail());
+        aluno.setMatricula(matricula);
         int opcao;
         do {
             System.out.println("\n--- Menu Aluno ---");

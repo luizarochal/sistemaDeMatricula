@@ -93,13 +93,13 @@ public class Disciplina {
     public String gerarDadosTexto() {
         String professorEmail = (professor != null) ? professor.getEmail() : "SEM_PROFESSOR";
         String cursoNome = (curso != null) ? curso.getNome() : "SEM_CURSO";
-        
+
         return this.nome + ";" +
-               cursoNome + ";" +
-               this.ativa + ";" +
-               professorEmail + ";" +
-               this.eObrigatorio + ";" +
-               this.alunos.size();
+                cursoNome + ";" +
+                this.ativa + ";" +
+                professorEmail + ";" +
+                this.eObrigatorio + ";" +
+                this.alunos.size();
     }
 
     public static Disciplina criarDoTexto(String linha) throws IOException {
@@ -118,10 +118,11 @@ public class Disciplina {
         CursoRepositorio cursoRepo = new CursoRepositorio("curso.txt");
         Curso curso = cursoRepo.procurarCurso(nomeCurso);
 
-        // Buscar professor (criar apenas com email para evitar dependência circular)
+        // Professor será vinculado posteriormente
         Professor professor = null;
-        if (!"SEM_PROFESSOR".equals(emailProfessor)) {
-            professor = new Professor("", emailProfessor, "12345", null);
+
+        if(emailProfessor.contains("@")){
+            professor = new Professor("",emailProfessor,"12345",null);
         }
 
         List<Aluno> alunos = new ArrayList<>();

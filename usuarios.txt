@@ -1,0 +1,8 @@
+1;Maria Secretaria;secretaria@escola.com;12345
+2;João Professor;professor@escola.com;12345
+2;Arthur Professor;professor2@escola.com;12345
+3;Ana Aluna;aluna@escola.com;12345
+3;cleber;aluno@escola.com;12345
+3;Gabriel;aluno2@escola.com;12345
+2;Juliana;juliana@email.com;12345
+3;Luiza;lurocha@gmail.com;12345

@@ -1,0 +1,3 @@
+Programacao Modular;Engenharia de Software;false;professor2@escola.com;true;0
+Programacao Orientada a Objetos;Engenharia de Software;false;professor@escola.com;false;0
+Calculo I;Matematica;false;professor@escola.com;false;1

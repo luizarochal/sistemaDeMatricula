@@ -59,7 +59,7 @@ public abstract class Usuario {
         case 2: return new Professor(nome, email, senha, null); // Disciplina será carregada depois
         case 3: 
             // Aluno sem dependências iniciais
-            Matricula matricula = new Matricula();
+            Matricula matricula = new Matricula(email);
             Curso curso = null; // Será carregado posteriormente se necessário
             return new Aluno(nome, email, senha, matricula, curso);
         default:

@@ -1,0 +1,3 @@
+Engenharia de Software;40
+Matematica;40
+Engenharia;200

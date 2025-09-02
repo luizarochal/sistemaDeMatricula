@@ -11,30 +11,26 @@ public class ProfessorRepositorio {
     }
 
     public Professor procurarProfessor(String emailProfessor) {
-        try (Scanner sc = new Scanner(new File(arquivo))) {
-            while (sc.hasNextLine()) {
-                String linha = sc.nextLine();
-                String[] dados = linha.split(";");
-                if (dados.length == 4 && dados[0].equals("2")) {
-                    String nome = dados[1];
-                    String email = dados[2];
-                    String senha = dados[3];
-                    
-                    if (email.equalsIgnoreCase(emailProfessor)) {
-                        // Buscar disciplina do professor
-                        DisciplinaRepositorio disciplinaRepo = new DisciplinaRepositorio("disciplina.txt");
-                        Disciplina disciplina = disciplinaRepo.procurarDisciplinaPorProfessor(emailProfessor);
-                        
-                        Professor professor = new Professor(nome, email, senha, disciplina);
-                        return professor;
-                    }
+    try (Scanner sc = new Scanner(new File(arquivo))) {
+        while (sc.hasNextLine()) {
+            String linha = sc.nextLine();
+            String[] dados = linha.split(";");
+            if (dados.length == 4 && dados[0].equals("2")) {
+                String nome = dados[1];
+                String email = dados[2];
+                String senha = dados[3];
+                
+                if (email.equalsIgnoreCase(emailProfessor)) {
+                    // Retornar professor sem disciplina inicialmente
+                    return new Professor(nome, email, senha, null);
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return null;
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+    return null;
+}
 
     // Método para atualizar professor com disciplina
     public void atualizarProfessor(Professor professor) throws IOException {

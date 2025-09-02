@@ -8,7 +8,7 @@ public class Aluno extends Usuario {
 
     public Aluno(String nome, String email, String senha, Matricula matricula, Curso curso) {
         super(nome, email, senha);
-        this.matricula = matricula != null ? matricula : new Matricula();
+        this.matricula = matricula != null ? matricula : new Matricula(email);
         this.curso = curso;
     }
 

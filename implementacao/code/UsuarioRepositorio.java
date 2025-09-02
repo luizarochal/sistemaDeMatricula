@@ -105,5 +105,4 @@ public class UsuarioRepositorio {
         }
         return null;
     }
-
 }
