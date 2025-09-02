@@ -60,7 +60,6 @@ public abstract class Usuario {
         case 3: 
             // Aluno sem dependências iniciais
             Matricula matricula = new Matricula();
-            matricula = MatriculaRepositorio.procurarMatricula(email);
             Curso curso = null; // Será carregado posteriormente se necessário
             return new Aluno(nome, email, senha, matricula, curso);
         default:

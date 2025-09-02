@@ -81,18 +81,4 @@ public class MatriculaRepositorio {
         
         return new Matricula();
     }
-
-
-    public void removerMatricula(Aluno aluno) throws IOException {
-        List<String> linhas = new ArrayList<>();
-        if (Files.exists(caminhoArquivo)) {
-            linhas = Files.readAllLines(caminhoArquivo, StandardCharsets.UTF_8);
-        }
-
-        String emailAluno = aluno.getEmail();
-        linhas.removeIf(linha -> linha.startsWith(emailAluno + ";"));
-
-        Files.write(caminhoArquivo, linhas, StandardCharsets.UTF_8);
-    }
-
 }

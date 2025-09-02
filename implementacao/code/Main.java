@@ -180,11 +180,8 @@ public class Main {
                     Disciplina disciplina = disciplinaRepo.procurarMateria(nomeDisc);
                     if (disciplina != null) {
                         aluno.matricularDisciplina(disciplina);
-                        MatriculaRepositorio matriculaRepo = new MatriculaRepositorio("matriculas.txt");
-                        matriculaRepo.salvarMatricula(aluno);
                         System.out.println("Matriculado!");
                     }
-                    
                 }
                 case 3 -> {
                     System.out.print("Digite o nome da disciplina a cancelar: ");
@@ -193,9 +190,6 @@ public class Main {
                     if (disciplina != null) {
                         aluno.cancelarDisciplina(disciplina);
                         System.out.println("Cancelamento realizado!");
-                        MatriculaRepositorio matriculaRepo = new MatriculaRepositorio("matriculas.txt");
-                        matriculaRepo.removerMatricula(aluno);
-                        matriculaRepo.salvarMatricula(aluno);
                     }
                 }
                 case 4 -> aluno.visualizarDisciplinas();

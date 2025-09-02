@@ -41,10 +41,13 @@ public class Matricula {
             disciplina.setAtiva(true);
         }
 
-       // Persistir mudanças
-       //salvar a matricula
-       MatriculaRepositorio repositorio = new MatriculaRepositorio();
-       repositorio.salvarMatricula(aluno);
+        // Persistir mudanças
+        try {
+            DisciplinaRepositorio discRepo = new DisciplinaRepositorio("disciplina.txt");
+            discRepo.salvar(Collections.singletonList(disciplina));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void cadastrarDisciplinaOptativa(Disciplina disciplina, Aluno aluno) {
@@ -72,46 +75,27 @@ public class Matricula {
     }
 
     public void cancelarDisciplina(Disciplina disciplina, Aluno aluno) {
-    //validarPeriodoMatricula();
+        validarPeriodoMatricula();
 
-    boolean removida = false;
-
-    
-    for (Disciplina d : new ArrayList<>(disciplinasObrigatorias)) {
-       // System.out.println("DEBUG: Verificando disciplina obrigatória: '" + d.getNome() + "' contra '" + disciplina.getNome() + "'");
-        if (d.getNome().trim().equalsIgnoreCase(disciplina.getNome().trim())) {
+        if (disciplinasObrigatorias.contains(disciplina)) {
             if (disciplinasObrigatorias.size() <= MIN_OBRIGATORIAS) {
                 throw new IllegalStateException(
                         "Mínimo de " + MIN_OBRIGATORIAS + " disciplinas obrigatórias necessário");
             }
-            disciplinasObrigatorias.remove(d);
-            d.getAlunos().remove(aluno);
-            removida = true;
-            break;
+            disciplinasObrigatorias.remove(disciplina);
+            disciplina.getAlunos().remove(aluno);
+        } else if (disciplinasOptativas.contains(disciplina)) {
+            disciplinasOptativas.remove(disciplina);
+            disciplina.getAlunos().remove(aluno);
+        } else {
+            throw new IllegalArgumentException("Disciplina não encontrada na matrícula");
+        }
+
+        // Verificar se disciplina ainda está ativa
+        if (disciplina.getAlunos().size() < 3) {
+            disciplina.setAtiva(false);
         }
     }
-
-    
-    if (!removida) {
-        for (Disciplina d : new ArrayList<>(disciplinasOptativas)) {
-            if (d.getNome().trim().equalsIgnoreCase(disciplina.getNome().trim())) {
-                disciplinasOptativas.remove(d);
-                d.getAlunos().remove(aluno);
-                removida = true;
-                break;
-            }
-        }
-    }
-
-    if (!removida) {
-        throw new IllegalArgumentException("Disciplina não encontrada na matrícula");
-    }
-
-    
-    if (disciplina.getAlunos().size() < 3) {
-        disciplina.setAtiva(false);
-    }
-}
 
     private void validarPeriodoMatricula() {
         

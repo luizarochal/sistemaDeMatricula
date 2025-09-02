@@ -47,8 +47,6 @@ public class Aluno extends Usuario {
 
     public void visualizarDisciplinas() {
         System.out.println("Disciplinas matriculadas:");
-        System.out.println(matricula.getDisciplinasObrigatorias().size() + " disciplinas obrigatórias e " +
-                           matricula.getDisciplinasOptativas().size() + " disciplinas optativas.");
         for (Disciplina disciplina : matricula.getDisciplinasObrigatorias()) {
             System.out.println("- " + disciplina.getNome() + " (Obrigatória)");
         }
@@ -56,6 +54,4 @@ public class Aluno extends Usuario {
             System.out.println("- " + disciplina.getNome() + " (Optativa)");
         }
     }
-
-
 }
