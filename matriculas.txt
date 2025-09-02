@@ -1,4 +1,4 @@
 aluna@escola.com;O;Programação Orientada a Objetos
 aluno2@escola.com;P;Programacao Orientada a Objetos
 aluno@escola.com;P;Programacao Orientada a Objetos
-lurocha@gmail.com;O:Programacao Modular,P:Programacao Orientada a Objetos,P:Calculo I
+lurocha@gmail.com;O:Programacao Modular

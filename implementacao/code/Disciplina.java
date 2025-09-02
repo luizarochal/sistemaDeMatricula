@@ -141,4 +141,17 @@ public class Disciplina {
                 ", alunosMatriculados=" + alunos.size() +
                 '}';
     }
+
+    @Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+    Disciplina that = (Disciplina) obj;
+    return nome != null && nome.equalsIgnoreCase(that.nome);
+}
+
+@Override
+public int hashCode() {
+    return nome != null ? nome.toLowerCase().hashCode() : 0;
+}
 }

@@ -188,10 +188,11 @@ public class Main {
                 case 3 -> {
                     System.out.print("Digite o nome da disciplina a cancelar: ");
                     String nomeDisc = sc.nextLine();
-                    Disciplina disciplina = disciplinaRepo.procurarMateria(nomeDisc);
-                    if (disciplina != null) {
-                        aluno.cancelarDisciplina(disciplina);
+                    try {
+                        aluno.cancelarDisciplinaPorNome(nomeDisc);
                         System.out.println("Cancelamento realizado!");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
                     }
                 }
                 case 4 -> aluno.visualizarDisciplinas();
@@ -200,37 +201,37 @@ public class Main {
     }
 
     private static void menuProfessor(Scanner sc, Professor professor) throws IOException {
-    int opcao;
-    do {
-        System.out.println("\n--- Menu Professor ---");
-        System.out.println("1. Visualizar minha disciplina");
-        System.out.println("2. Ver alunos matriculados");
-        System.out.println("3. Debug do sistema");
-        System.out.println("0. Sair");
-        System.out.print("Opção: ");
-        opcao = Integer.parseInt(sc.nextLine());
+        int opcao;
+        do {
+            System.out.println("\n--- Menu Professor ---");
+            System.out.println("1. Visualizar minha disciplina");
+            System.out.println("2. Ver alunos matriculados");
+            System.out.println("3. Debug do sistema");
+            System.out.println("0. Sair");
+            System.out.print("Opção: ");
+            opcao = Integer.parseInt(sc.nextLine());
 
-        switch (opcao) {
-            case 1 -> {
-                if (professor.getDisciplina() != null) {
-                    professor.visualizarDisciplinaCompleta();
-                } else {
-                    System.out.println("Nenhuma disciplina vinculada.");
-                    System.out.println("Professor: " + professor.toString());
+            switch (opcao) {
+                case 1 -> {
+                    if (professor.getDisciplina() != null) {
+                        professor.visualizarDisciplinaCompleta();
+                    } else {
+                        System.out.println("Nenhuma disciplina vinculada.");
+                        System.out.println("Professor: " + professor.toString());
+                    }
+                }
+                case 2 -> {
+                    if (professor.getDisciplina() != null) {
+                        System.out.println("Alunos matriculados em " + professor.getDisciplina().getNome() + ":");
+                        System.out.println(professor.visualizarAlunosDaDisciplina());
+                    } else {
+                        System.out.println("Nenhuma disciplina vinculada.");
+                    }
+                }
+                case 3 -> {
+                    DebugService.verificarEstadoSistema();
                 }
             }
-            case 2 -> {
-                if (professor.getDisciplina() != null) {
-                    System.out.println("Alunos matriculados em " + professor.getDisciplina().getNome() + ":");
-                    System.out.println(professor.visualizarAlunosDaDisciplina());
-                } else {
-                    System.out.println("Nenhuma disciplina vinculada.");
-                }
-            }
-            case 3 -> {
-                DebugService.verificarEstadoSistema();
-            }
-        }
-    } while (opcao != 0);
-}
+        } while (opcao != 0);
+    }
 }
